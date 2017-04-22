@@ -94,7 +94,10 @@ public class BattleShip {
         int pinX, pinY; // starting position of ship to be placed
         Random rand = new Random();
         boolean noClash = false;
+        boolean shipIsHorisontal;
         int tries = 0; // number of attempts to place ships
+        Ship[] activeShip = new Ship[nrOfShips];
+        
      
         // ToDo: need to test for FIT - does it fit on the board without going over the edge
         //       need to test for CLASH - does it overlap another ship
@@ -103,6 +106,7 @@ public class BattleShip {
             pinX = rand.nextInt(maxRows) + 1;
             pinY = rand.nextInt(maxCols) +1;
             shipOrientation = rand.nextInt(2);
+            shipIsHorisontal  = shipOrientation == 0;
             tries ++;
             // test FIT
             if(shipOrientation == 0) {  // orientation is horisontal
@@ -124,6 +128,11 @@ public class BattleShip {
                         shipGrid[0][pinY].setGridPointStatus( shipGrid[0][pinY].getGridPointStatus() + 1); // increment row counter
                         }
                         shipsPlaced ++;
+                        
+                        activeShip[shipsPlaced] = new Ship;
+                        activeShip[shipsPlaced].createNewShip(shipLen, pinX, pinY, );
+                        acttiveShip.
+                        
                         System.out.println("Placed ship #: " + shipsPlaced + " with orientation: " + shipOrientation);
                         }
                         

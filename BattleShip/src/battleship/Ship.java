@@ -22,20 +22,26 @@ package battleship;
  */
 public class Ship {
     // class variables
-    private static int activeShips; // total count of ships on the board and not sunk
+    private static int activeShips = 0; // total count of ships on the board and not sunk
     
     // instance variables
     private int shipID;     // starts with 1, allocated in order of placement
     private int shipSize;   //         ,        ,    2    ,      3  ,  3   ,         5 
-    private int shipType;  // frigate , corvette, destroyer, cruiser, sub, aircraft carrier
-    private String shipName;  // a historic ship of this type
+    private static String[] shipTypeLookup = {"dummy0", "dummy1", "frigate", "destroyer", "dummy4", "carrier"};  // frigate , corvette, destroyer, cruiser, sub, aircraft carrier
+    private String shipType;
+    private String shipName;  // a historic ship of this type 
     private int shipLives; // remaining lives - starts equal to sipSize
+    private GridPoint shipAnchor; // root position of ship on grid
+    private boolean isHorisontal; // true horisontal; false vertical;
 
-    /**
-     * @return the activeShips
-     */
-    public static int getActiveShips() {
-        return activeShips;
+    
+    public void createNewShip(int size, GridPoint anchor, boolean orientation) {
+        this.shipSize = size;
+        this.shipLives = size;
+        this.shipType = shipTypeLookup[size];
+        this.shipAnchor = anchor;
+        this.isHorisontal = orientation; 
+        activeShips ++;
     }
 
     /**
@@ -76,16 +82,10 @@ public class Ship {
     /**
      * @return the shipType
      */
-    public int getShipType() {
+    public String getShipType() {
         return shipType;
     }
 
-    /**
-     * @param shipType the shipType to set
-     */
-    public void setShipType(int shipType) {
-        this.shipType = shipType;
-    }
 
     /**
      * @return the shipName
